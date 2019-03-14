@@ -1,6 +1,7 @@
 class ThoughtsController < ApplicationController
 
   def index
+    @thought = Thought.new
     @thoughts = Thought.all
   end
 
@@ -22,7 +23,7 @@ class ThoughtsController < ApplicationController
     p thought_params
 
     if @thought.save
-      redirect_to @thought
+      redirect_to thoughts_path
     else
       render 'new'
     end
@@ -32,7 +33,7 @@ class ThoughtsController < ApplicationController
     @thought = Thought.find(params[:id])
 
     if @thought.update(thought_params)
-      redirect_to @thought
+      redirect_to thoughts_path
     else
       render 'edit'
     end
