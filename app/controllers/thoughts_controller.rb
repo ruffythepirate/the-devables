@@ -2,7 +2,7 @@ class ThoughtsController < ApplicationController
 
   def index
     @thought = Thought.new
-    @thoughts = Thought.all
+    @thoughts = Thought.all.sort {|a,b|b.updated_at <=> a.updated_at}
   end
 
   def show
