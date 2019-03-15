@@ -1,5 +1,6 @@
 <%= form_with model: @thought, local: true do |form| %>
 
+  <div class="flow-root">
   <% if @thought.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -13,12 +14,9 @@
   <% end %>
 
   <p>
-    <%= form.label :text %><br>
-    <%= form.text_area :text %>
+    <%= form.text_area(:text, class: "full-width", placeholder: "What's on your mind today?") %>
   </p>
-
-  <p>
-    <%= form.submit %>
-  </p>
+    <%= form.submit class: "btn-primary pull-right" %>
+    </div>
 <% end %>
 
