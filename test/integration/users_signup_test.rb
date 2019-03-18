@@ -14,12 +14,14 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   end
 
   test "valid signup" do
-  assert_difference 'User.count', 1 do
-    post users_path, params: { user: { name: "my username",
+    assert_difference 'User.count', 1 do
+      post users_path, params: { user: { name: "my username",
                                        email: "user@valid.com",
       password: "foofoo",
       password_confirmation: "foofoo"}}
     end
+    follow_redirect!
+    assert_template 'users/show'
   end
 end
 
