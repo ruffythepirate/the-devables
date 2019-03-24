@@ -14,12 +14,22 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
   test "successful login" do
     get root_path
-    assert_select 'a[href="/login"]'
+    assert_select 'a[href=?]', login_path
 
     get login_path
-    post login_path, params: {session: { email: "johan@example.com", password: "foobar"}}
+    post login_path, params: {session: { email: "michael@example.com", password: "password"}}
 
-    assert_select 'a[href=?]', logout_path, false
-    assert_select 'a[href=?]', login_path
+    assert is_logged_in?
+    assert_select 'a[href=?]', login_path, false
+  end
+
+  test "logging out" do
+    get login_path
+    post login_path, params: {session: { email: "michael@example.com", password: "password"}}
+
+    assert is_logged_in?
+
+    delete logout_path
+    assert_not is_logged_in?
   end
 end
