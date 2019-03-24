@@ -19,7 +19,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     get login_path
     post login_path, params: {session: { email: "johan@example.com", password: "foobar"}}
 
-    get root_path
-    assert_select 'a[href="/logout"]', false
+    assert_select 'a[href=?]', logout_path, false
+    assert_select 'a[href=?]', login_path
   end
 end
