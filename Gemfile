@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.12'
 
+# Used to generate fake users.
+gem 'faker', '1.9.3'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
