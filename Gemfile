@@ -32,6 +32,10 @@ gem 'bcrypt', '~> 3.1.12'
 # Used to generate fake users.
 gem 'faker', '1.9.3'
 
+# Pagination plugins
+gem 'will_paginate', '3.1.7'
+gem 'bootstrap-will_paginate', '1.0.0'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
