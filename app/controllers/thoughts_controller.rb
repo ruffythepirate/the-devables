@@ -1,4 +1,5 @@
 class ThoughtsController < ApplicationController
+  layout "admin"
 
   def index
     @thought = Thought.new
