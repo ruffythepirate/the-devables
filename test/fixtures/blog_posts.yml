@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+most_recent:
+  title: Most Recent
+  body: MyString
+  user: one
+  created_at: <%= 10.minutes.ago %>
+
+second:
+  title: Second Most Recent
+  body: MyString
+  user: two
+  created_at: <%= 30.minutes.ago %>
