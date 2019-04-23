@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  post '/api/blog-post/md-to-html', to: 'blog_posts#md_to_html'
+
   root 'thoughts#index'
 
 end
