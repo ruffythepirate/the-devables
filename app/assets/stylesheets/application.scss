@@ -16,12 +16,18 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.navbar {
+  margin-bottom: 0px;
+  border-radius: 0px;
+}
+
 .content-wrapper {
   max-width: 500px;
   margin: auto;
   background-color: lightgrey;
   padding: 20px;
 }
+
 
 @import "custom";
 @import "forms";

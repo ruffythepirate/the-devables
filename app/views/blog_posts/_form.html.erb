@@ -1,5 +1,10 @@
+<input id="title" type="text" placeholder="Title" class="form-control">
 <div id="editor">
   <textarea id="raw-value"></textarea>
   <div id="rendered-value"></div>
+</div>
+
+<div id="action-bar">
+  <button class="btn btn-primary" id="save-button">Save</button>
 </div>
 <%= javascript_include_tag params[:controller] %>

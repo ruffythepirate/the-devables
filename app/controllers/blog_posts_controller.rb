@@ -17,6 +17,12 @@ class BlogPostsController < ApplicationController
   def new
   end
 
+  def create
+    blog_post = current_user.blog_posts.create(blog_post_params)
+
+    render json: blog_post
+  end
+
   def edit
   end
 
@@ -29,4 +35,8 @@ class BlogPostsController < ApplicationController
     end
   end
 
+  private
+  def blog_post_params
+    params.require('blog_post').permit(:title, :body)
+  end
 end

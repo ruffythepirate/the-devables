@@ -2,11 +2,20 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+titleText = document.getElementById('title')
 textarea = document.getElementById('raw-value')
 renderedView = document.getElementById('rendered-value')
+saveButton = document.getElementById('save-button')
 
 textarea.onkeypress = ->
   debounce(1000, updateView)
+
+savePost = ->
+  title = titleText.value
+  content = textarea.value
+  callAjaxPost('/api/blog_posts', {title, content}, -> console.log('saved!'))
+
+saveButton.onclick = savePost
 
 callAjaxPost = (url, body, callback) ->
   xhttp = new XMLHttpRequest()

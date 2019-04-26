@@ -6,6 +6,12 @@ html, body, #editor {
   height: 100%;
 }
 
+#title {
+  width: 100%;
+  margin-bottom: 0;
+  font-size:xx-large;
+}
+
 textarea, #editor div {
   height: 100%;
   display: inline-block;
@@ -24,4 +30,10 @@ textarea {
   font-size: 14px;
   font-family: 'Monaco', courier, monospace;
   padding: 20px;
+}
+
+#action-bar {
+  position: sticky;
+  text-align: right;
+  bottom: 0;
 }

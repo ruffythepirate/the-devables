@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   post '/api/blog-post/md-to-html', to: 'blog_posts#md_to_html'
+  post '/api/blog-posts', to: 'blog_posts#create'
 
   root 'thoughts#index'
 
