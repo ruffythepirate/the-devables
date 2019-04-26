@@ -5,10 +5,19 @@ require 'rouge/plugins/redcarpet'
 class BlogPostsController < ApplicationController
   include BlogPostsHelper
 
+  layout 'admin'
+
   before_action :logged_in_user
 
   def md_to_html
-    render plain: markdown(params[:markdown]) if params[:markdown]
+    markdown = request.body.read
+    render plain: markdown(markdown) if markdown
+  end
+
+  def new
+  end
+
+  def edit
   end
 
   private

@@ -8,9 +8,7 @@ class BlogPostsControllerTest < ActionDispatch::IntegrationTest
 
   test "post to md_to_html should convert the body to html." do
     log_in_as(@user)
-    post '/api/blog-post/md-to-html', xhr: true, params: {
-      markdown: '# My title'
-    }
+    post '/api/blog-post/md-to-html', params: '# My title', xhr: true
 
     assert_equal "<h1>My title</h1>\n", @response.body
   end
@@ -24,4 +22,15 @@ class BlogPostsControllerTest < ActionDispatch::IntegrationTest
     post '/api/blog-post/md-to-html'
     assert_response :success
   end
+
+  test "new requires logged in" do
+    get blog_posts_new_url
+    assert_response :redirect
+
+    log_in_as(@user)
+
+    get blog_posts_new_url
+    assert_response :success
+    assert_template 'blog_posts/new'
+   end
 end

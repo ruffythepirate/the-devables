@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   get 'sessions/new'
   get 'users/new'
+  get 'blog_posts/new'
   match 'signup', to: 'users#new', via: 'get'
   match 'signup', to: 'users#create', via: 'post'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :thoughts
   resources :users
+  resources :blog_posts
   resources :account_activations, only: [:edit]
 
   get '/login', to: 'sessions#new'
