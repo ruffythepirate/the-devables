@@ -5,7 +5,7 @@ require 'rouge/plugins/redcarpet'
 class BlogPostsController < ApplicationController
   include BlogPostsHelper
 
-  layout 'admin'
+  layout 'editor'
 
   before_action :logged_in_user
 

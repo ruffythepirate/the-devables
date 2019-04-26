@@ -4,16 +4,9 @@
 
 textarea = document.getElementById('raw-value')
 renderedView = document.getElementById('rendered-value')
-button = document.getElementById('button')
-#
-testClick = ->
-  console.log("clicked!")
-
-button.onclick = testClick
 
 textarea.onkeypress = ->
   debounce(1000, updateView)
-
 
 callAjaxPost = (url, body, callback) ->
   xhttp = new XMLHttpRequest()
@@ -37,7 +30,7 @@ updateView = ->
 pendingQuery = null
 lastCall = null
 
-debounceInner = (delay, callFunction) -> 
+debounceInner = (delay, callFunction) ->
   pendingQuery = setTimeout ->
     currentCall = new Date()
     pendingQuery = null
@@ -52,10 +45,4 @@ debounce = (delay, callFunction) ->
   lastCall = new Date()
   if !pendingQuery
     debounceInner(delay, callFunction)
-
-
-
-# 1. Get id of textarea
-# 2. On change, do a debounce. When finished, send request to endpoint.
-# 3. Populate div with result from request.
 
