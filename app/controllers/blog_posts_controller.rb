@@ -1,7 +1,3 @@
-require 'redcarpet'
-require 'rouge'
-require 'rouge/plugins/redcarpet'
-
 class BlogPostsController < ApplicationController
   include BlogPostsHelper
 

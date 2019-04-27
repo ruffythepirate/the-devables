@@ -1,0 +1,6 @@
+<div class="blog-post">
+  <%= link_to blog_post.title, "/blog/#{blog_post.id}", class: 'item-title' %>
+  <div class="inline-time">
+    <%= time_ago_in_words blog_post.updated_at %>
+  </div>
+</div>

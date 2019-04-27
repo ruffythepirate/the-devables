@@ -15,9 +15,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  get '/blog', to: 'public_blog_posts#index'
+  get '/blog/:id', to: 'public_blog_posts#show'
+
   post '/api/blog-post/md-to-html', to: 'blog_posts#md_to_html'
   post '/api/blog-posts', to: 'blog_posts#create'
 
   root 'thoughts#index'
-
 end
