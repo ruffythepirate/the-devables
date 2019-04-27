@@ -1,0 +1,8 @@
+<% provide(:title, "#{current_user.name} blog posts")%>
+
+
+<div class="action-bar">
+  <%= link_to 'New post', new_blog_post_url, class: 'action' %>
+</div>
+
+<%= render @blog_posts %>

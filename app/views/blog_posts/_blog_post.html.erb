@@ -1,0 +1,10 @@
+<div class="blog-post">
+  <%= link_to blog_post.title, edit_blog_post_path(blog_post), class: 'item-title' %>
+  <div class="inline-action-bar">
+  <%= link_to 'delete', blog_post, method: :delete %>
+  | <%= link_to 'view', blog_post %>
+  </div>
+  <div class="inline-time">
+    <%= time_ago_in_words blog_post.updated_at %>
+  </div>
+</div>

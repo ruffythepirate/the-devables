@@ -10,10 +10,54 @@ saveButton = document.getElementById('save-button')
 textarea.onkeypress = ->
   debounce(1000, updateView)
 
-savePost = ->
+
+csrf_token = $('meta[name="csrf-token"]').attr('content')
+$.ajaxSetup({
+  beforeSend: (xhr) ->
+    xhr.setRequestHeader('X-CSRF-TOKEN', csrf_token)
+})
+
+buildBlogPost = ->
+  id = document.getElementById('id').value
   title = titleText.value
-  content = textarea.value
-  callAjaxPost('/api/blog_posts', {title, content}, -> console.log('saved!'))
+  body = textarea.value
+  item = {id, title, body}
+  item["blog_post"] = {title, body}
+  item
+
+savePost = ->
+  post = buildBlogPost()
+  if post.id
+    updatePost post
+  else
+    createPost post
+
+createPost = (post) ->
+  sendSaveRequest('POST', post, (response) ->
+    # redirect to edit page.
+    id = response.id
+    window.location.replace("/blog_posts/#{id}/edit")
+    console.log('success'))
+
+updatePost = (post) ->
+  sendSaveRequest('PATCH', post, ->
+    console.log('success'))
+
+sendSaveRequest = (method, post, successCallback) ->
+  $.ajax({
+    url: "/api/blog-posts",
+    data: JSON.stringify(post),
+    type: method,
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json',
+    async: false,
+    success: successCallback
+    error: ->
+      # show a warning message.
+      console.log "fail"
+  })
+
+
 
 saveButton.onclick = savePost
 

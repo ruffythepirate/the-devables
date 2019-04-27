@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-html, body, #editor {
+html, form, body, #editor {
   height: 100%;
 }
 
@@ -32,8 +32,23 @@ textarea {
   padding: 20px;
 }
 
-#action-bar {
+.blog-post {
+  margin: 20px;
+  padding: 10px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.item-title {
+  font-size: x-large;
+}
+
+a.action {
+  font-size: large;
+}
+
+.action-bar {
+  padding: 10px;
   position: sticky;
-  text-align: right;
   bottom: 0;
 }

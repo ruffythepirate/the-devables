@@ -1,10 +1,13 @@
-<input id="title" type="text" placeholder="Title" class="form-control">
+<%= form_for(@blog_post) do |f| %>
+  <%= f.hidden_field :id, value: @blog_post.id %>
+  <%= f.text_field :title, id: 'title', placeholder: "Title", value: @blog_post.body %>
 <div id="editor">
-  <textarea id="raw-value"></textarea>
+  <%= f.text_area :body, id: 'raw-value', value: @blog_post.body %>
   <div id="rendered-value"></div>
 </div>
 
-<div id="action-bar">
+<div class="action-bar">
   <button class="btn btn-primary" id="save-button">Save</button>
 </div>
+<% end %>
 <%= javascript_include_tag params[:controller] %>
