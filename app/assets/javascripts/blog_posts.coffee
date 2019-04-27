@@ -8,7 +8,7 @@ renderedView = document.getElementById('rendered-value')
 saveButton = document.getElementById('save-button')
 
 textarea.onkeypress = ->
-  debounce(1000, updateView)
+  debounce(800, updateView)
 
 
 csrf_token = $('meta[name="csrf-token"]').attr('content')
@@ -98,4 +98,6 @@ debounce = (delay, callFunction) ->
   lastCall = new Date()
   if !pendingQuery
     debounceInner(delay, callFunction)
+
+updateView()
 
