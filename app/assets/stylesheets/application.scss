@@ -21,6 +21,17 @@
   border-radius: 0px;
 }
 
+.nav-sub-menu {
+  background-color: #444;
+  color: white;
+  padding: 10px;
+  padding-left: 30px;
+  a {
+    color: white;
+    font-size: large;
+  }
+}
+
 .content-wrapper {
   max-width: 500px;
   margin: auto;
