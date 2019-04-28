@@ -18,6 +18,14 @@ class BlogPostsController < ApplicationController
     @blog_post = current_user.blog_posts.create()
   end
 
+  def set_published
+    @blog_post = current_user.blog_posts.find_by(id: params[:id])
+    new_value =request.body.read == 'true'
+    if @blog_post && @blog_post.published != new_value
+      new_value ? @blog_post.publish : @blog_post.unpublish
+    end
+  end
+
   def destroy
     @blog_post = current_user.blog_posts.find_by(id: params[:id])
     if @blog_post

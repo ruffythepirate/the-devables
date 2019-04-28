@@ -4,6 +4,7 @@ class BlogPostsControllerTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:michael)
+    @unpublished_blogpost = blog_posts(:unpublished)
   end
 
   test "post to md_to_html should convert the body to html." do
@@ -22,6 +23,16 @@ class BlogPostsControllerTest < ActionDispatch::IntegrationTest
     post '/api/blog-posts', params: {blog_post: {title: "title", body: "body"}}
     assert_response :success
    end
+
+  test "publish sets publish on a blogpost" do
+    log_in_as(@user)
+
+    assert !@unpublished_blogpost.published
+    post "/api/blog-posts/#{@unpublished_blogpost.id}/set-published", params: 'true'
+
+    assert @unpublished_blogpost.reload.published
+    assert_not_nil @unpublished_blogpost.published_at
+  end
 
   test "post creates a blogpost" do
     log_in_as(@user)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_21_121411) do
+ActiveRecord::Schema.define(version: 2019_04_27_154008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2019_04_21_121411) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "published", default: false
+    t.datetime "published_at"
     t.index ["user_id", "created_at"], name: "index_blog_posts_on_user_id_and_created_at", order: { created_at: :desc }
     t.index ["user_id"], name: "index_blog_posts_on_user_id"
   end

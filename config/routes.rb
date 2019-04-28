@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   post '/api/blog-post/md-to-html', to: 'blog_posts#md_to_html'
   post '/api/blog-posts', to: 'blog_posts#create'
+  post '/api/blog-posts/:id/set-published', to: 'blog_posts#set_published'
 
   root 'thoughts#index'
 end

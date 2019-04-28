@@ -6,6 +6,14 @@ most_recent:
   user: one
   created_at: <%= 10.minutes.ago %>
 
+unpublished:
+  title: Not published
+  body: some body
+  user: michael
+  published: false
+  published_at: nil
+  created_at: <%= 50.minutes.ago %>
+
 second:
   title: Second Most Recent
   body: MyString
