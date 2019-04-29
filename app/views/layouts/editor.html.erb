@@ -9,6 +9,7 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
+  <style><%= ::Rouge::Themes::Molokai.render(scope: '.highlight') %></style>
   <body>
     <%= render '/layouts/header' %>
 
