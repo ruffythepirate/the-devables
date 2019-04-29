@@ -3,6 +3,7 @@
   <div class="inline-action-bar">
   <%= link_to 'delete', blog_post, method: :delete %>
   | <%= link_to 'view', blog_post %>
+| <a class="action-publish" data-blog-post-published="<%= blog_post.published %>" data-blog-post-id="<%= blog_post.id %>" href="#"><%= blog_post.published ? 'unpublish':'publish' %></a>
   </div>
   <div class="inline-time">
     <%= time_ago_in_words blog_post.updated_at %>

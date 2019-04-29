@@ -7,7 +7,7 @@ textarea = document.getElementById('raw-value')
 renderedView = document.getElementById('rendered-value')
 saveButton = document.getElementById('save-button')
 
-textarea.onkeypress = ->
+textarea && textarea.onkeypress = ->
   debounce(800, updateView)
 
 
@@ -59,12 +59,12 @@ sendSaveRequest = (method, post, successCallback) ->
 
 
 
-saveButton.onclick = savePost
+saveButton && saveButton.onclick = savePost
 
 callAjaxPost = (url, body, callback) ->
   xhttp = new XMLHttpRequest()
   xhttp.onreadystatechange = ->
-    if this.readyState == 4  && this.status == 200
+    if this.readyState == 4  && (this.status == 200 || this.status == 204)
       callback(this.responseText)
 
 
@@ -99,5 +99,36 @@ debounce = (delay, callFunction) ->
   if !pendingQuery
     debounceInner(delay, callFunction)
 
-updateView()
+textarea && updateView()
+
+$('document').ready(->
+  publishButtons = [].slice.call(document.getElementsByClassName('action-publish'))
+
+  publishButtons && publishButtons.forEach (button) ->
+    button.onclick = togglePublish
+)
+
+togglePublish = ->
+  toggleState = getAttributeValue(this,'blog-post-published') == 'true'
+  id = getAttributeValue(this, 'blog-post-id')
+  newState = if toggleState then "false" else "true"
+  self = this
+  callAjaxPost("/api/blog-posts/#{id}/set-published", newState, ->
+    toggleState = !toggleState
+    setAttributeValue(self, 'blog-post-published', toggleState)
+    self.text = if toggleState then "unpublish" else "publish"
+  )
+
+getAttributeValue = (el, attributeName) ->
+  attr = getAttribute(el, attributeName)
+  attr && attr.value
+
+setAttributeValue = (el, attributeName, value) ->
+  attr = getAttribute(el, attributeName)
+  attr && attr.value = value
+
+getAttribute = (el, attributeName) ->
+  attr = el.attributes.getNamedItem(attributeName) || el.attributes.getNamedItem('data-' + attributeName)
+
+
 
