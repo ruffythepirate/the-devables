@@ -29,4 +29,24 @@ class BlogPostTest < ActiveSupport::TestCase
   test "Order should be most recent first" do
     assert_equal blog_posts(:most_recent), BlogPost.first
   end
+
+  test "Ingress ignores empty lines and headers" do
+    post = BlogPost.new()
+    post.body = """
+    # Title
+
+    The body starts here."""
+
+    assert_equal "The body starts here.", post.ingress()
+  end
+
+  test "Ingress only takes the first paragraph" do
+    post = BlogPost.new()
+    post.body = """
+    paragraph 1
+    paragraph 2
+    """
+
+    assert_equal "paragraph 1", post.ingress()
+  end
 end

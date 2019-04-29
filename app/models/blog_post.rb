@@ -9,6 +9,19 @@ class BlogPost < ApplicationRecord
     markdown self.body
   end
 
+  def ingress
+    if self.body
+      chunks = self.body
+        .split("\n")
+        .map {|s| s.strip}
+        .filter{|s| !s.start_with?("#")}
+        .filter{|s| !s.empty?}
+      chunks.length > 0 ? chunks[0] : ""
+    else
+      self.body
+    end
+  end
+
   def publish
     update_columns(published: true, published_at: Time.zone.now)
   end
