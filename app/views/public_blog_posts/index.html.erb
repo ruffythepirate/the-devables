@@ -1,3 +1,15 @@
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-8">
 <% @blog_posts.each do |blog_post|  %>
   <%= render '/public_blog_posts/blog_post', blog_post: blog_post %>
 <%end%>
+  </div>
+  <div class="col-md-4">
+    <div class="labels">
+      <h1>Labels</h1>
+    </div>
+
+  </div>
+</div>
+</div>

@@ -32,7 +32,10 @@
     </div>
   </div>
   <div class="nav-sub-menu">
-    <%= link_to 'Blog', blog_url %>
+    <ul class="nav navbar-nav" style="float:none">
+      <li class="nav-item"><%= link_to 'Blog', blog_url %></li>
+      <li class="nav-item"><%= link_to 'Thoughts', thoughts_path %></li>
+    </ul>
   </div>
 </nav>
 
