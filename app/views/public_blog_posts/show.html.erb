@@ -1,6 +1,9 @@
 <% provide(:title, @blog_post.title) %>
 
-<h1><%= @blog_post.title %></h1>
+  <style><%= ::Rouge::Themes::Molokai.render(scope: '.highlight') %></style>
 
-<%= @blog_post.body_as_html %>
+<div class="container">
+  <h1><%= @blog_post.title %></h1>
 
+  <%= @blog_post.body_as_html %>
+</div>
