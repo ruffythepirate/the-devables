@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  self.allow_forgery_protection = false
   layout "admin"
   def new
   end
