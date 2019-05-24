@@ -14,14 +14,17 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(password)
       if user && !user.activated?
+        puts "User #{email} is not activated!"
         flash[:warning] = "Account is not activated. Check your email for activation link."
         redirect_to root_url
       else
+        puts "User #{email} is now logged in!"
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         redirect_back_or user
       end
     else
+      puts "User #{email} entered an invalid password"
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
     end
