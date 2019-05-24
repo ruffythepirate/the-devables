@@ -22,5 +22,7 @@ Rails.application.routes.draw do
   post '/api/blog-posts', to: 'blog_posts#create'
   post '/api/blog-posts/:id/set-published', to: 'blog_posts#set_published'
 
+  get '/api/user/post-list', to: 'blog_posts#get_user_post_list'
+
   root 'public_blog_posts#index'
 end

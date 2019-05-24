@@ -26,6 +26,11 @@ class BlogPostsController < ApplicationController
     end
   end
 
+  def get_user_post_list
+    blog_posts = current_user.blog_posts
+    render json: blog_posts
+  end
+
   def destroy
     @blog_post = current_user.blog_posts.find_by(id: params[:id])
     if @blog_post

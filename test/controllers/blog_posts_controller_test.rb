@@ -55,6 +55,18 @@ class BlogPostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "get to get_user_blog_posts requires logged in" do
+    get '/api/user/post-list'
+    assert_response :redirect
+
+    log_in_as(@user)
+
+    get '/api/user/post-list'
+    assert_response :success
+    body = JSON.parse @response.body
+    assert body.length == 1
+   end
+
   test "new requires logged in" do
     get blog_posts_new_url
     assert_response :redirect
