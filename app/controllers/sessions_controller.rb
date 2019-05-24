@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
     email = params[:session][:email].downcase
     password = params[:session][:password]
 
-    puts "email: #{email}, password: #{password}"
     user = User.find_by(email: email)
 
     if user && user.authenticate(password)
